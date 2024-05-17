@@ -12,7 +12,12 @@
         background-color: darkseagreen;
       }
     </style>
-
+    <script>
+      function goToLobby(){
+        let username = $('#nameInput').val();
+        window.location.href = "lobby.html?username="+username;
+      }
+    </script>
     <title>Reversi</title>
   </head>
   <body>
@@ -35,7 +40,7 @@
             <div class="input-group">
               <span class="input-group-text" id="displayName">Name</span>
             <input type="text" class="form-control text-nowrap" id="nameInput" placeholder="Choose your display name" aria-label="Enter your display name for use while playing Reversi" aria-describedby="displayName"/>
-            <button type="submit" class="btn btn-primary text-nowrap" id="lobbyButton" onclick="window.location='lobby.html'">Enter Lobby</button>
+            <button type="submit" class="btn btn-primary text-nowrap" id="lobbyButton" onclick="goToLobby()">Enter Lobby</button>
           </div>
           </div>
       </div>
@@ -49,6 +54,7 @@
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha384-1H217gwSVyLSIfaLxHbE7dRb3v4mYCKbpQvzx0cegeju1MVsGrX5xXxAvs/HgeFs" crossorigin="anonymous"></script>
     
     <!-- 
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
