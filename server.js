@@ -155,7 +155,7 @@ io.on('connection', (socket) => {
     });
 
     socket.on('disconnect', () => {
-        serverLog('a page disconnected from the server: ' + socket.id);
+        serverLog('a player disconnected from the server: ' + socket.id);
         if((typeof players[socket.id]!= 'undefined') && (players[socket.id]!= null)){
             let payload={
                 username:players[socket.id].username,
