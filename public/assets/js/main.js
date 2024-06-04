@@ -359,15 +359,64 @@ socket.on('game_update', (payload) =>{
             $('#'+ row +'_' + column).off('click');
 
                     if (board[row][column] === ' ') {
-                        console.log('yo');
                         $('#'+ row + '_' + column).addClass('hovered_over'); 
-
+                        $('#'+ row + '_' + column).click(((r, c) => {
+                            return (() => {
+                                let payload = {
+                                    row: r,
+                                    column: c,
+                                    color: my_color
+                                }; 
+                                console.log('**** Client log message, sending \'play_token\' command:' +JSON.stringify(payload));
+                                socket.emit('play_token', payload);
+                            });
+                        })(row, column));
+                    }
+                    else{
+                        $('#'+ row + '_' + column).removeClass('hovered_over'); 
                     }
 
         }
        
     }
     old_board = board; 
+});
+
+socket.on('play_token_response', (payload) =>{
+
+    if(( typeof payload == 'undefined') || (payload === null)){
+        console.log('Server did not send a payload');
+        return;
+    }
+    if(payload.result === 'fail'){
+        console.log(payload.message);
+        return;
+    }
+
+});
+
+socket.on('game_over', (payload) =>{
+
+    if(( typeof payload == 'undefined') || (payload === null)){
+        console.log('Server did not send a payload');
+        return;
+    }
+    if(payload.result === 'fail'){
+        console.log(payload.message);
+        return;
+    }
+
+    /*Announce with a button to the lobby*/
+    let nodeA = $("<div id='game_over'></div>");
+    let nodeB = $("<h1>Game Over</h1>");
+    let nodeC = $("<h2>" + payload.who_won + " won!</h2>");
+    let nodeD = $("<a href='lobby.html?username="+username+"'class='btn btn-lg btn-success' role='button'>Return to lobby</a>");
+    nodeA.append(nodeB);
+    nodeA.append(nodeC);
+    nodeA.append(nodeD);
+    nodeA.hide();
+    $('#game_over').replaceWith(nodeA);
+    nodeA.show("fade",1000);
 });
 /* Request to join the chat room */
 
