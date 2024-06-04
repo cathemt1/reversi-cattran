@@ -302,11 +302,22 @@ socket.on('game_update', (payload) =>{
 
     $("#my_color").html('<h3 id="my_color">I am '+my_color+'</h3>');
 
+    let whitesum = 0;
+    let blacksum =0;
+
+
 
 
     /*Animate changes to board*/
     for(let row = 0; row <8; row++){
         for(let column= 0; column <8; column++){
+            if(board[row][column] === 'w'){
+                whitesum++;
+            }
+            else if 
+            (board[row][column] === 'b'){
+                blacksum++;
+            }
             /*Check to see if the server changed any space on board*/
             if(old_board[row][column]!== board[row][column]){
                 let graphic = "";
@@ -379,6 +390,8 @@ socket.on('game_update', (payload) =>{
         }
        
     }
+    $("#whitesum").html(whitesum);
+    $("#blacksum").html(blacksum);
     old_board = board; 
 });
 
@@ -428,6 +441,8 @@ $( () => {
     socket.emit('join_room', request);
 
     $('#lobbyTitle').html(username+"'s Lobby");
+
+    $('#quit').html("<a href='lobby.html?username="+username+"'class='btn btn-lg btn-danger' role='button'>Quit</a>");
 
     $('#chatMessage').keypress( function (e){
         let key = e.which;
