@@ -303,10 +303,7 @@ socket.on('game_update', (payload) =>{
     $("#my_color").html('<h3 id="my_color">I am '+my_color+'</h3>');
 
     let whitesum = 0;
-    let blacksum =0;
-
-
-
+    let blacksum = 0;
 
     /*Animate changes to board*/
     for(let row = 0; row <8; row++){
