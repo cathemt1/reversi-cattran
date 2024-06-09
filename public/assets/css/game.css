@@ -26,13 +26,14 @@ body{
   }
 
   table#game_board td {
+    background-color: rgb(87, 188, 78);
     border: 1px solid black;
     margin: 0px;
     padding: 0px;
   }
 
   td.hovered_over:hover {
-
     background-image: url('/assets/images/hover.gif');
+    background-size: cover;
 
   }
